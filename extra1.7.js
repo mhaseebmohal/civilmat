@@ -18,52 +18,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// typed text 
-document.addEventListener("DOMContentLoaded", () => {
-	const el = document.querySelector(".typed");
-	if(!el) return;
-	const observer = new IntersectionObserver(entries => {
-		if(entries[0].isIntersecting) {
-			const script = document.createElement("script");
-			script.src = "assets/vendor/typed.js/typed.min.js";
-			script.onload = () => {
-				const strings = el.getAttribute("data-typed-items").split(",").map(s => s.trim());
-				new Typed(el, {
-					strings,
-					typeSpeed: 80,
-					backSpeed: 40,
-					loop: true
-				});
-			};
-			document.body.appendChild(script);
-			observer.disconnect();
-		}
-	});
-	observer.observe(el);
-});
 // Google Analytics setup
 window.dataLayer = window.dataLayer || [];
 function gtag() {
