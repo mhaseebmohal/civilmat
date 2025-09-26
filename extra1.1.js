@@ -1,17 +1,17 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVEXHW49ST"></script>
-<script>
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-######');
-</script>
 
 
 
 
-<script>
+
+
 		const quotes = ["Engineering is the art of directing the great sources of power in nature for the use and convenience of man.", "Perfection is not attainable, but if we chase perfection we can catch excellence.", "Small daily improvements over time lead to stunning results.", "The road to success is always under construction.", "Simplicity is the soul of efficiency."];
 
 		function newQuote() {
@@ -27,14 +27,14 @@
 		newQuote();
 		// update rarely, to stay subtle
 		setInterval(newQuote, 20000);
-		</script>
+
 		
 		
 		
 		
 		
 		
-		<script>
+
 async function updateVisitorCount() {
   try {
     const res = await fetch("counter.php");
@@ -46,7 +46,7 @@ async function updateVisitorCount() {
   }
 }
 updateVisitorCount();
-</script>
+
 
 
 
