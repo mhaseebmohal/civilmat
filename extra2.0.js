@@ -1,49 +1,53 @@
 // for filter purpose for the civil projects filter
 
+  (function(){
+    document.addEventListener('DOMContentLoaded', function () {
+      // Debug helpers
+      if (typeof Isotope === 'undefined') {
+        console.error('Isotope not found. Include isotope.pkgd.min.js before this script.');
+        return;
+      }
 
-document.addEventListener('DOMContentLoaded', function () {
-  if (typeof Isotope === 'undefined') {
-    console.error('Isotope not found. Make sure isotope.pkgd.min.js is loaded before this file.');
-    return;
-  }
-  if (typeof imagesLoaded === 'undefined') {
-    console.error('imagesLoaded not found. Make sure imagesloaded.pkgd.min.js is loaded before this file.');
-    return;
-  }
+      var container = document.querySelector('.portfolio-container');
+      if (!container) {
+        console.error('No .portfolio-container element found.');
+        return;
+      }
 
-  var container = document.querySelector('.portfolio-container');
-  if (!container) {
-    console.error('No .portfolio-container element found.');
-    return;
-  }
+      // initialize Isotope after images are loaded (safer)
+      imagesLoaded(container, function() {
+        var iso = new Isotope(container, {
+          itemSelector: '.portfolio-item',
+          layoutMode: 'fitRows'
+        });
 
-  imagesLoaded(container, function () {
-    var iso = new Isotope(container, {
-      itemSelector: '.portfolio-item',
-      layoutMode: 'fitRows'
-    });
+        var filters = document.querySelectorAll('#portfolio-flters li');
+        if (!filters.length) console.warn('No filter buttons found with #portfolio-flters li');
 
-    var filters = document.querySelectorAll('#portfolio-flters li');
-    if (!filters.length) console.warn('No filter buttons found with #portfolio-flters li');
+        filters.forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            filters.forEach(function(b){ b.classList.remove('filter-active'); });
+            this.classList.add('filter-active');
 
-    filters.forEach(function (btn) {
-      btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        filters.forEach(function (b) { b.classList.remove('filter-active'); });
-        this.classList.add('filter-active');
+            var filterValue = this.getAttribute('data-filter') || '*';
+            try {
+              iso.arrange({ filter: filterValue });
+            } catch (err) {
+              console.error('Isotope arrange error:', err);
+            }
+          });
+        });
 
-        var filterValue = this.getAttribute('data-filter') || '*';
-        try {
-          iso.arrange({ filter: filterValue });
-        } catch (err) {
-          console.error('Isotope arrange error:', err);
-        }
+        // optional: trigger layout to be safe
+        iso.layout();
       });
     });
+  })();
 
-    iso.layout();
-  });
-});
+
+
+
 
 
 
