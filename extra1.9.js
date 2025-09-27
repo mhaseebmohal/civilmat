@@ -1,4 +1,6 @@
 // for filter purpose for the civil projects filter
+
+
 document.addEventListener('DOMContentLoaded', function () {
   if (typeof Isotope === 'undefined') {
     console.error('Isotope not found. Make sure isotope.pkgd.min.js is loaded before this file.');
@@ -8,11 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('imagesLoaded not found. Make sure imagesloaded.pkgd.min.js is loaded before this file.');
     return;
   }
+
   var container = document.querySelector('.portfolio-container');
   if (!container) {
     console.error('No .portfolio-container element found.');
     return;
   }
+
   imagesLoaded(container, function () {
     var iso = new Isotope(container, {
       itemSelector: '.portfolio-item',
@@ -36,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     });
+
     iso.layout();
   });
 });
