@@ -5,7 +5,7 @@ gtag('js', new Date());
 gtag('config', 'G-ZVEXHW49ST');
 
 // Quotes rotation
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
   const quotes = [
     "Engineering is the art of directing the great sources of power in nature for the use and convenience of man.",
     "Perfection is not attainable, but if we chase perfection we can catch excellence.",
@@ -13,22 +13,38 @@ document.addEventListener('DOMContentLoaded', function() {
     "The road to success is always under construction.",
     "Simplicity is the soul of efficiency."
   ];
-  const box = document.getElementById("quote-box");
-  const text = document.getElementById("quote-text");
-  if(!box || !text) return;
-  box.style.transition = 'opacity 0.6s ease';
-  box.style.opacity = 1;
+  
+  function startQuotes() {
+    const box = document.getElementById("quote-box");
+    const text = document.getElementById("quote-text");
+    if(!box || !text) {
+      console.warn("Quote box not found.");
+      return;
+    }
 
-  function newQuote() {
-    box.style.opacity = 0;
-    setTimeout(() => {
-      text.textContent = quotes[Math.floor(Math.random() * quotes.length)];
-      box.style.opacity = 1;
-    }, 600);
+    box.style.transition = "opacity 0.6s ease";
+    box.style.opacity = 1;
+
+    function newQuote() {
+      box.style.opacity = 0;
+      setTimeout(() => {
+        text.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+        box.style.opacity = 1;
+      }, 600);
+    }
+
+    newQuote();
+    setInterval(newQuote, 20000);
   }
-  newQuote();
-  setInterval(newQuote, 20000);
-});
+
+  // Run immediately if DOM ready, else wait
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startQuotes);
+  } else {
+    startQuotes();
+  }
+})();
+
 
 // Visitor counter
 async function updateVisitorCount() {
