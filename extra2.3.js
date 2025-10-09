@@ -2,7 +2,7 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){ dataLayer.push(arguments); }
 gtag('js', new Date());
-gtag('config', 'G-ZVEXHW49ST');
+gtag('config', 'G-D2WHJ12MLZ');
 
 // Quotes rotation
 (function() {
